@@ -1,0 +1,3 @@
+{
+    "python.defaultInterpreterPath": " ${workspaceFolder}/Python-Purifier/.env/Scripts/python.exe"
+}
