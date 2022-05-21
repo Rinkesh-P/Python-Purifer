@@ -13,23 +13,33 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:json",
     "onLanguage:python"
   ],
   "contributes": {
     "commands": [],
     "configuration": {
       "type": "object",
-      "title": "Json Server Configuration",
+      "title": "PythonPurifier",
       "properties": {
-        "jsonServer.exampleConfiguration": {
-          "scope": "resource",
-          "type": "string",
-          "default": "You can override this message."
+        "PythonPurifier.substructures": {
+          "type": "object",
+          "description": "Switch patterns on an off",
+          "properties": {
+            "UnnecessaryElif": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "default": {
+            "UnnecessaryElif": false
+          }
         }
       }
     }
   },
+  
+  
+
   "main": "./client/out/extension",
   "scripts": {
     "vscode:prepublish": "npm run compile",

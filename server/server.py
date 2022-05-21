@@ -1,24 +1,33 @@
 
 from typing import Optional
-from pygls.lsp.methods import (TEXT_DOCUMENT_DID_CHANGE,HOVER,TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS)
+from pygls.lsp.methods import (TEXT_DOCUMENT_DID_CHANGE,HOVER,TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS,WORKSPACE_DID_CHANGE_CONFIGURATION)
 from pygls.lsp.types import (Diagnostic,DidChangeTextDocumentParams,Position,
-                             Range,MarkupContent,Hover,Position,Range)
+                             Range,MarkupContent,Hover,Position,Range,ConfigurationParams,ConfigurationItem,DidChangeConfigurationParams)
                              
 from pygls.lsp.types.basic_structures import (DiagnosticSeverity)
 from pygls.server import LanguageServer
 from qchecker.match import *
 from qchecker.substructures import*
+EXTENSION_NAME = "PythonPurifier"
 
 class PythonLanguageServer(LanguageServer):
-
-    CONFIGURATION_SECTION = 'python_server'
+    
+    #CONFIGURATION_SECTION = 'python_server'
     HOVER = 'textDocument/hover'
     DOCUMENT_HIGHLIGHT = 'textDocument/documentHighlight'
     TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS = 'textDocument/publishDiagnostics'
+    WORKSPACE_DID_CHANGE_CONFIGURATION = 'workspace/didChangeConfiguration'
     def __init__(self):
+        
         super().__init__() 
+        self.substructures = []
+
+
 
 python_server = PythonLanguageServer()
+
+
+
 
 def doc_to_string(ls,params):
     text_doc = ls.workspace.get_document(params.text_document.uri)
@@ -60,13 +69,16 @@ def hover(ls, params,
 
 @python_server.feature(TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS)
 def _validate(ls: python_server, params):
+    diagnostics=[]
     text_doc = ls.workspace.get_document(params.text_document.uri)
+    ls.publish_diagnostics(text_doc.uri, diagnostics)
     source = text_doc.source
     matches = []
     for substructure in SUBSTRUCTURES:
         matches += substructure.iter_matches(source)
     diagnostics = _make_diagnostics(ls,matches)
     ls.publish_diagnostics(text_doc.uri, diagnostics)
+    ls.send_notification("workspace/diagnostic/refresh")
 
 
 def _make_diagnostics(ls,matches):
