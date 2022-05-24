@@ -25,13 +25,114 @@
           "type": "object",
           "description": "Switch patterns on an off",
           "properties": {
+            "ElseIf": {
+              "type": "boolean"
+            },
+            "ConfusingElse": {
+              "type": "boolean"
+            },
+            "RedundantFor": {
+              "type": "boolean"
+            },
+            "MergeableEqual": {
+              "type": "boolean"
+            },
+            "RedundantComparison": {
+              "type": "boolean"
+            },
+            "RedundantNot": {
+              "type": "boolean"
+            },
+            "RedundantArithmetic": {
+              "type": "boolean"
+            },
+            "RepeatedMultiplication": {
+              "type": "boolean"
+            },
+            "RepeatedAddition": {
+              "type": "boolean"
+            },
+            "DuplicateExpression": {
+              "type": "boolean"
+            },
+            "MissedAbsoluteValue": {
+              "type": "boolean"
+            },
+            "AugmentableAssignment": {
+              "type": "boolean"
+            },
+            "DuplicateIfElseBody": {
+              "type": "boolean"
+            },
+            "SeveralDuplicateIfElseStatements": {
+              "type": "boolean"
+            },
+            "DuplicateIfElseStatement": {
+              "type": "boolean"
+            },
+            "UnnecessaryElse": {
+              "type": "boolean"
+            },
+            "NestedIf": {
+              "type": "boolean"
+            },
+            "EmptyElseBody": {
+              "type": "boolean"
+            },
+            "EmptyIfBody": {
+              "type": "boolean"
+            },
+            "IfElseAssignBool": {
+              "type": "boolean"
+            },
+            "IfElseAssignReturn": {
+              "type": "boolean"
+            },
+            "IfElseAssignBoolReturn": {
+              "type": "boolean"
+            },
+            "IfReturnBool": {
+              "type": "boolean"
+            },
+            "IfElseReturnBool": {
+              "type": "boolean"
+            },
             "UnnecessaryElif": {
               "type": "boolean"
             }
+
           },
           "additionalProperties": false,
           "default": {
-            "UnnecessaryElif": false
+            "ElseIf": true,
+            "ConfusingElse": true,
+            "RedundantFor": true,
+            "MergeableEqual": true,
+            "RedundantComparison": true,
+            "RedundantNot": true,
+            "RedundantArithmetic": true,
+            "RepeatedMultiplication": true,
+            "RepeatedAddition": true,
+            "MissedAbsoluteValue": true,
+
+            "DuplicateExpression": true,
+            "AugmentableAssignment": true,
+            "DuplicateIfElseBody": true,
+            "SeveralDuplicateIfElseStatements": true,
+            "DuplicateIfElseStatement": true,
+            "UnnecessaryElse": true,
+            "NestedIf": true,
+            "EmptyElseBody": true,
+            "EmptyIfBody": true,
+            "IfElseAssignBool": true,
+            "IfElseAssignReturn": true,
+            "IfElseAssignBoolReturn": true,
+            "IfReturnBool": true,
+            "IfElseReturnBool": true,
+            "UnnecessaryElif": true
+
+
+
           }
         }
       }
