@@ -1,6 +1,6 @@
 
 from typing import Optional
-from pygls.lsp.methods import (TEXT_DOCUMENT_DID_CHANGE,HOVER,TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS,WORKSPACE_DID_CHANGE_CONFIGURATION)
+from pygls.lsp.methods import (TEXT_DOCUMENT_DID_CHANGE,HOVER,TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS,WORKSPACE_DID_CHANGE_CONFIGURATION,TEXT_DOCUMENT_DID_OPEN)
 from pygls.lsp.types import (Diagnostic,DidChangeTextDocumentParams,Position,
                              Range,MarkupContent,Hover,Position,Range,ConfigurationParams,ConfigurationItem,DidChangeConfigurationParams)
                              
@@ -17,16 +17,60 @@ class PythonLanguageServer(LanguageServer):
     DOCUMENT_HIGHLIGHT = 'textDocument/documentHighlight'
     TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS = 'textDocument/publishDiagnostics'
     WORKSPACE_DID_CHANGE_CONFIGURATION = 'workspace/didChangeConfiguration'
+    TEXT_DOCUMENT_DID_OPEN = 'textDocument/didOpen'
     def __init__(self):
         
         super().__init__() 
+        
         self.substructures = []
-
-
 
 python_server = PythonLanguageServer()
 
+@python_server.feature(TEXT_DOCUMENT_DID_OPEN)
+def did_open(ls,params):
+    ls.show_message("TTTTT")
+    _get_config(ls,params)
 
+def set_config(config, ls):
+    ls.show_message("YES")
+    substructure_names = {substructure.__name__: substructure for substructure in SUBSTRUCTURES}
+    print(substructure_names)
+    active = []
+    for name, value in config:
+        if value:
+            active.append(substructure_names[name])
+    ls.substructures = active
+    print( ls.substructures)
+
+
+
+def _get_config(ls, params):
+    ls.show_message("Getting Config")
+    ls.get_configuration(
+        ConfigurationParams(
+            items=[ConfigurationItem(section=f"{EXTENSION_NAME}.substructures")]
+            ),
+        lambda config, ls=ls: set_config(config[0], ls)
+    )
+    
+
+@python_server.feature(WORKSPACE_DID_CHANGE_CONFIGURATION)
+def did_change_configuration(ls,params: DidChangeConfigurationParams):
+    ls.show_message("Test")
+    _get_config(ls,params)
+
+@python_server.feature(TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS)
+def _validate(ls: python_server, params):
+    diagnostics=[]
+    text_doc = ls.workspace.get_document(params.text_document.uri)
+    ls.publish_diagnostics(text_doc.uri, diagnostics)
+    source = text_doc.source
+    matches = []
+    for substructure in ls.substructures:
+        matches += substructure.iter_matches(source)
+    diagnostics = _make_diagnostics(ls,matches)
+    ls.publish_diagnostics(text_doc.uri, diagnostics)
+    ls.send_notification("workspace/diagnostic/refresh")
 
 
 def doc_to_string(ls,params):
@@ -51,6 +95,7 @@ def get_error_cordinates(matches):
         x.append([temp.from_line,temp.from_offset,temp.to_line,temp.to_offset])
     return x
 
+
 @python_server.feature(HOVER)
 def hover(ls, params,
 ) -> Optional[Hover]:
@@ -67,18 +112,7 @@ def hover(ls, params,
             return Hover(contents=contents, range=lsp_ranges[i])
     return        
 
-@python_server.feature(TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS)
-def _validate(ls: python_server, params):
-    diagnostics=[]
-    text_doc = ls.workspace.get_document(params.text_document.uri)
-    ls.publish_diagnostics(text_doc.uri, diagnostics)
-    source = text_doc.source
-    matches = []
-    for substructure in SUBSTRUCTURES:
-        matches += substructure.iter_matches(source)
-    diagnostics = _make_diagnostics(ls,matches)
-    ls.publish_diagnostics(text_doc.uri, diagnostics)
-    ls.send_notification("workspace/diagnostic/refresh")
+
 
 
 def _make_diagnostics(ls,matches):
