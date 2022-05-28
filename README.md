@@ -5,6 +5,18 @@ https://trello.com/b/D1Xp37O8/project-17
 
 <br>
 
+## Project Description
+This project is a VS Code extension for Python that highlights code smells and anti-patterns in students’ code. This extenstion aims to provide suggestions of good coding practices when it detects semantically incorrect blocks of code. This is done by using our client, James' qChecker library. At a high-level, this project consists of a VS Code extension code base, that communicates with the Python Language Server using pygls which is an implementation of the Language Server Protocol.
+
+<br>
+
+## Technologies
+- **Python (3.10 or higher)**: this was the language that we used the most, as this extension is made for Python code, and the qChecker is a Python library.
+- **qChecker (0.0.0a4)**: This is the Python library that makes the semantic check on student code - provided and created by our client, James.
+- **pygls (latest)**: This is an implementation of the Language Server Protocol that we used to implement Python Purifier.
+-  **JSON**: This was used to make modification to the configuration of our Python Purifier extension (for example, defining what qChecker checks to make.)
+
+
 ## Set-up Instructions
 
 ### Extension Settings Set-up
