@@ -1,11 +1,11 @@
 {
-  "name": "json-extension",
-  "description": "Simple json extension example",
-  "author": "Open Law Library",
-  "repository": "https://github.com/openlawlibrary/pygls",
+  "name": "python-purifier",
+  "description": "A python extension that identifies semantic errors in the code and shows how to resolve the semantic errors",
+  "author": "Team 20 (Code Control)",
+  "repository": "https://github.com/uoa-compsci399-s1-2022/team20-python-purifier",
   "license": "Apache-2.0",
   "version": "0.11.3",
-  "publisher": "openlawlibrary",
+  "publisher": "Team 20 (Code Control)",
   "engines": {
     "vscode": "^1.62.0"
   },
