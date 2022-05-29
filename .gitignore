@@ -5,3 +5,4 @@ pygls.log
 server/__pycache__/server.cpython-310.pyc
 client/out/extension.js
 client/out/extension.js.map
+server/server.py
