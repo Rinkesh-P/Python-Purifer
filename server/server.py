@@ -21,20 +21,19 @@ class PythonLanguageServer(LanguageServer):
 
     def __init__(self):
         super().__init__() # Setting up LanguageServer with pygls defaults
-        self.substructures = [] # Stores code checks the cleint has choosen to run in there workspace settings
+        self.substructures = [] # Stores code checks the client has choosen to run in there workspace settings
 
 # Initializing new instance of PythonLanguageServer
 python_server = PythonLanguageServer()
 
-# Adding defualt workspace settings to self.substructures when cleint opens a new document
+# Adding defualt workspace settings to self.substructures when client opens a new document
 @python_server.feature(TEXT_DOCUMENT_DID_OPEN)
 def did_open(ls,params):
      get_configuration(ls,params)
 
-# Trigger when cleint changes 
+# Trigger when client changes 
 @python_server.feature(SET_TRACE_NOTIFICATION)
 def get_configuration(ls, params):
-     ls.show_message("Getting Config")
      ls.get_configuration(
          ConfigurationParams(
              items=[ConfigurationItem(section=f"{EXTENSION_NAME}.substructures")]
@@ -42,7 +41,7 @@ def get_configuration(ls, params):
          lambda config, ls=ls: set_config(config[0], ls)
      )
 
-# Updates self.substructures on the sever side with the new list of checks the cleint wants to run
+# Updates self.substructures on the sever side with the new list of checks the client wants to run
 def set_config(config, ls):
      substructure_names = {substructure.__name__: substructure for substructure in SUBSTRUCTURES}
      active = []
@@ -51,13 +50,13 @@ def set_config(config, ls):
              active.append(substructure_names[name])
      ls.substructures = active
 
-# Trigger event for code checks - Activated whenever the cleint changes there current document
+# Trigger event for code checks - Activated whenever the client changes there current document
 @python_server.feature(TEXT_DOCUMENT_DID_CHANGE)
 def did_change(ls, params: DidChangeTextDocumentParams):
     """Text document did change notification."""
     _validate(ls, params)
 
-# Sends diagnostics errors identified by ls.substructures checks to the cleint
+# Sends diagnostics errors identified by ls.substructures checks to the client
 @python_server.feature(TEXT_DOCUMENT_PUBLISH_DIAGNOSTICS)
 def _validate(ls: python_server, params):
     diagnostics=[]
@@ -72,7 +71,7 @@ def _validate(ls: python_server, params):
     ls.publish_diagnostics(text_doc.uri, diagnostics) 
     ls.send_notification("workspace/diagnostic/refresh")
 
-# Helper function called from __validate. Creates the list of Diagnostic objects (to send to the cleint) based on the errors identified by ls.substructures checks
+# Helper function called from __validate. Creates the list of Diagnostic objects (to send to the client) based on the errors identified by ls.substructures checks
 def _make_diagnostics(ls,matches):
     ls.show_message_log('Validating Python...')
     diagnostics = []
@@ -110,7 +109,7 @@ def get_error_cordinates(matches):
     return x
 
 
-# Registers cleint hover over an error idenified on the sever side and triggers the relevant markdown content for the error. 
+# Registers client hover over an error idenified on the sever side and triggers the relevant markdown content for the error. 
 @python_server.feature(HOVER)
 def hover(ls, params,
 ) -> Optional[Hover]:
