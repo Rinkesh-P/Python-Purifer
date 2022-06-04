@@ -32,6 +32,7 @@ This project is a VS Code extension for Python that highlights code smells and a
 ### Activate Virtual Enviroment
 
 1. `.env/Scripts/activate` (for Windows)
+2. `source .env/bin/activate` (for macOS/Unix)
 
 ### Install Server Dependencies
 
