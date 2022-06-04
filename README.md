@@ -26,7 +26,7 @@ This project is a VS Code extension for Python that highlights code smells and a
 
 ### Install Virtual Enviroment
 
-1. `python -m venv env` (for Windows)
+1. `python -m venv .env` (for Windows)
 1. `python -m pip install -e .` from root directory
 
 ### Activate Virtual Enviroment
