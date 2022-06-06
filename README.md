@@ -1,4 +1,4 @@
-# Python Purifier - Python Semantic Error Extension
+# Python Purifier - Python Code Style Defect Extension
 
 ## Project Management Tool
 https://trello.com/b/D1Xp37O8/project-17 
