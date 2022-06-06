@@ -54,6 +54,14 @@ Open terminal and execute following commands:
 
 <br>
 
+## Future Plans
+-  Publish Python Purifier to VS Code Extension Marketplace.
+- Improve implementation of overlapping code style defects on one line.
+-  Keep up with changes made to qChecker.
+    - Python Purifier is designed to make all code style defect checks available in qChecker. All we will need to do is to update qChecker to latest version and add new code style defect checks to the package.json file so that they appear in the extension configuration page.  
+
+<br>
+
 ## Acknowledgemnts
 
 ### Projects:
