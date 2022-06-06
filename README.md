@@ -11,7 +11,7 @@ This project is a VS Code extension for Python that highlights code smells and a
 <br>
 
 ## Technologies
-- **Python (3.10 or higher)**: this was the language that we used the most, as this extension is made for Python code, and the qChecker is a Python library.
+- **Python (3.10 or higher)**: this was the language that we used the most, as this extension is made for Python code, and the qChecker is a Python library. Ensure to use Python version 3.10 or higher as qChecker cannot work otherwise.
 - **qchecker (latest)**: This is the Python library that makes the semantic check on student code - provided and created by our client, James.
 - **pygls (latest)**: This is an implementation of the Language Server Protocol that we used to implement Python Purifier.
 -  **JSON**: This was used to make modification to the configuration of our Python Purifier extension (for example, defining what qChecker checks to make.)
@@ -44,7 +44,7 @@ This project is a VS Code extension for Python that highlights code smells and a
 Open terminal and execute following commands:
 
 1. `npm install`
-1. `cd client/`
+1. `cd client`
 1. `npm install`
 
 ### Run Example
@@ -56,10 +56,10 @@ Open terminal and execute following commands:
 <br>
 
 ## Future Plans
--  Publish Python Purifier to VS Code Extension Marketplace.
+- Publish Python Purifier to VS Code Extension Marketplace.
 - Improve implementation of overlapping code style defects on one line.
--  Keep up with changes made to qChecker.
-    - Python Purifier is designed to make all code style defect checks available in qChecker. All we will need to do is to update qChecker to latest version and add new code style defect checks to the package.json file so that they appear in the extension configuration page.  
+- Keep up with changes made to qChecker.
+- Python Purifier is designed to make all code style defect checks available in qChecker. All we will need to do is to  update qChecker to latest version and add new code style defect checks to the package.json file so that they appear in the extension configuration page.  
 
 <br>
 
