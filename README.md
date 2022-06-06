@@ -21,8 +21,8 @@ This project is a VS Code extension for Python that highlights code smells and a
 
 ### Extension Settings Set-up
 1. Go to File -> Preferences -> Settings (Ctrl+) 
-1. For User settings go the Extension dropdown and modify the Python Default Interpretor Path to the path python.exe is located on your local machine.
-1. For Workspace settings go the Extension dropdown and modify the Python Default Interpretor Path to the path python.exe is located on your local machine.
+1. For User settings go the Extension dropdown and modify the Python Default Interpreter Path to the path python.exe is located on your local machine.
+1. For Workspace settings go the Extension dropdown and modify the Python Default Interpreter Path to the path python.exe is located on your local machine.
 
 ### Install Virtual Enviroment
 
@@ -66,7 +66,7 @@ Open terminal and execute following commands:
 
 ### Projects:
 
-The json-extension repository was a Python language server template we have based the Python-Purifier extension on, which has provided useful understanding of Languager Server Protocols and pygls implementation that we used as a point of reference.
+The json-extension repository was a Python language server template we have based the Python-Purifier extension on, which has provided useful understanding of Language Server Protocols and pygls implementation that we used as a point of reference.
 
 https://github.com/openlawlibrary/pygls/tree/master/examples/json-extension 
 
