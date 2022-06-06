@@ -12,22 +12,21 @@ This project is a VS Code extension for Python that highlights code smells and a
 
 ## Technologies
 - **Python (3.10 or higher)**: this was the language that we used the most, as this extension is made for Python code, and the qChecker is a Python library.
-- **qChecker (0.0.0a4)**: This is the Python library that makes the semantic check on student code - provided and created by our client, James.
+- **qchecker (latest)**: This is the Python library that makes the semantic check on student code - provided and created by our client, James.
 - **pygls (latest)**: This is an implementation of the Language Server Protocol that we used to implement Python Purifier.
 -  **JSON**: This was used to make modification to the configuration of our Python Purifier extension (for example, defining what qChecker checks to make.)
 
 
 ## Set-up Instructions
 
+### Install Virtual Enviroment
+
+1. `python -m venv .env` (for Windows)
+
 ### Extension Settings Set-up
 1. Go to File -> Preferences -> Settings (Ctrl+) 
 1. For User settings go the Extension dropdown and modify the Python Default Interpretor Path to the path python.exe is located on your local machine.
 1. For Workspace settings go the Extension dropdown and modify the Python Default Interpretor Path to the path python.exe is located on your local machine.
-
-### Install Virtual Enviroment
-
-1. `python -m venv .env` (for Windows)
-1. `python -m pip install -e .` from root directory
 
 ### Activate Virtual Enviroment
 
@@ -37,14 +36,15 @@ This project is a VS Code extension for Python that highlights code smells and a
 ### Install Server Dependencies
 
 1. `pip install pygls`
-1. `pip install git+https://github.com/James-Ansley/qchecker@dev-0.0.0a4`
+1. `pip install qchecker`
 
 ### Install Client Dependencies
 
 Open terminal and execute following commands:
 
 1. `npm install`
-1. `cd client/ && npm install`
+1. `cd client/`
+1. `npm install`
 
 ### Run Example
 
