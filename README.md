@@ -62,7 +62,7 @@ Open terminal and execute following commands:
 
 <br>
 
-## Acknowledgemnts
+## Acknowledgements
 
 ### Projects:
 
