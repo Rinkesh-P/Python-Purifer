@@ -21,7 +21,8 @@ This project is a VS Code extension for Python that highlights code smells and a
 
 ### Install Virtual Enviroment
 
-1. `python -m venv .env` (for Windows)
+ `python -m venv .env` (for Windows) <br>
+ `python3 -m venv .env` (for macOS/Unix)
 
 ### Extension Settings Set-up
 1. Go to File -> Preferences -> Settings (Ctrl+) 
@@ -30,8 +31,8 @@ This project is a VS Code extension for Python that highlights code smells and a
 
 ### Activate Virtual Enviroment
 
-1. `.env/Scripts/activate` (for Windows)
-2. `source .env/bin/activate` (for macOS/Unix)
+ `.env/Scripts/activate` (for Windows) <br>
+ `source .env/bin/activate` (for macOS/Unix)
 
 ### Install Server Dependencies
 
