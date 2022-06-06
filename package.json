@@ -1,6 +1,6 @@
 {
   "name": "python-purifier",
-  "description": "A python extension that identifies semantic errors in the code and shows how to resolve the semantic errors",
+  "description": "A python extension that identifies code style defects in the code and shows how to resolve the code style defects",
   "author": "Team 20 (Code Control)",
   "repository": "https://github.com/uoa-compsci399-s1-2022/team20-python-purifier",
   "license": "Apache-2.0",
